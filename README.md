@@ -16,6 +16,7 @@ Implementation of [A Neural Algorithm of Artistic Style](http://arxiv.org/abs/15
  - Obtain the route and token to visit the notebook.
    - oc logs tensorflow
    - oc get routes tensorflow
+ - Visit the Jupyter Notebook and run the neuralart_tensorflow notebook.ipynb
 
 ### Examples
 
