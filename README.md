@@ -6,6 +6,17 @@ Implementation of [A Neural Algorithm of Artistic Style](http://arxiv.org/abs/15
  - [Tensorflow](http://www.tensorflow.org/)
  - [VGG 19 model](https://drive.google.com/file/d/0B8QJdgMvQDrVU2cyZjFKU1RrLUU/view?usp=sharing)
 
+### OpenShift Demo
+ - Create the TensorFlow pod
+   - oc create -f tensorflow.yaml
+   - oc expose service tensorflow
+ - Download the [VGG 19 model](http://presto.eadgbe.net/bkozdemb/data/imagenet-vgg-verydeep-19.mat)
+ - Copy the Jupyter notebook directory to the running pod.
+   - oc rsync neuralart_tensorflow tensorflow:
+ - Obtain the route and token to visit the notebook.
+   - oc logs tensorflow
+   - oc get routes tensorflow
+
 ### Examples
 
 <p>
