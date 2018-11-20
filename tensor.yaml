@@ -1,0 +1,42 @@
+kind: List
+apiVersion: v1
+metadata: {}
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: tensorflow
+    labels:
+      app: tensorflow
+  spec:
+    ports:
+    - name: tensorflow
+      port: 8888
+      targetPort: 8888
+      protocol: TCP
+    selector:
+      app: tensorflow
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    name: tensorflow 
+    labels:
+      app: tensorflow
+  spec:
+    containers:
+      - name: tensorflow
+        image: "tensorflow/tensorflow:latest-gpu"
+        command: ["jupyter"] 
+        args: ["notebook", "--allow-root", "--ip=0.0.0.0", "--no-browser"]
+        ports:
+        - containerPort: 8888
+        securityContext:
+          privileged: true
+        resources:
+          limits:
+            nvidia.com/gpu: 1 # requesting 1 GPU
+    tolerations:                              
+    - key: "nvidia.com/gpu"                 
+      operator: "Equal"                     
+      value: "value"                        
+      effect: "NoSchedule"
